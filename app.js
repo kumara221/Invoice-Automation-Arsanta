@@ -28,13 +28,13 @@ const mobileSwitchButtons = document.querySelectorAll(".mobile-switch-btn");
 document
   .getElementById("downloadUnpaidBtn")
   .addEventListener("click", () => {
-    downloadPDF("unpaid");
+    downloadPDF("Unpaid");
   });
 
 document
   .getElementById("downloadPaidBtn")
   .addEventListener("click", () => {
-    downloadPDF("paid");
+    downloadPDF("Paid");
   });
 
 addItemBtn.addEventListener("click", () => addItemRow());
@@ -360,11 +360,25 @@ function renderAll() {
 }
 
 async function downloadPDF(type) {
+  const previousMobileView = appShell?.getAttribute("data-mobile-view") || "form";
+  const isMobile = window.innerWidth <= 900;
+
   try {
-    if (type === "unpaid") {
+    if (type === "Unpaid") {
       paidStamp.classList.add("hidden");
     } else {
       paidStamp.classList.remove("hidden");
+    }
+
+    // kalau mobile dan masih di form, pindah dulu ke preview
+    if (isMobile && previousMobileView !== "preview") {
+      appShell?.setAttribute("data-mobile-view", "preview");
+
+      mobileSwitchButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mobileView === "preview");
+      });
+
+      await new Promise((resolve) => setTimeout(resolve, 300));
     }
 
     const originalTransform = previewScale.style.transform;
@@ -403,7 +417,16 @@ async function downloadPDF(type) {
     previewScale.style.width = originalWidth;
     previewScale.style.height = originalHeight;
 
-    if (paidToggle.checked && type === "unpaid") {
+    // balikin ke view sebelumnya kalau tadi sempat dipindah
+    if (isMobile && previousMobileView !== "preview") {
+      appShell?.setAttribute("data-mobile-view", previousMobileView);
+
+      mobileSwitchButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.mobileView === previousMobileView);
+      });
+    }
+
+    if (paidToggle.checked && type === "Unpaid") {
       paidStamp.classList.remove("hidden");
     }
   } catch (error) {
