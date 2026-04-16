@@ -36,14 +36,14 @@ document
   .getElementById("downloadUnpaidBtn")
   .addEventListener("click", () => {
     closeMobileDrawer();
-    downloadPDF("unpaid");
+    downloadPDF("Unpaid");
   });
 
 document
   .getElementById("downloadPaidBtn")
   .addEventListener("click", () => {
     closeMobileDrawer();
-    downloadPDF("paid");
+    downloadPDF("Paid");
   });
 
 addItemBtn.addEventListener("click", () => addItemRow());
@@ -418,8 +418,11 @@ async function downloadPDF(type) {
 
     pdf.addImage(imgData, "JPEG", 0, 0, 1750, 2000, undefined, "FAST");
 
-    const finalInvoiceNo = getInvoiceNumber() === "-" ? "invoice" : getInvoiceNumber();
-    pdf.save(`${finalInvoiceNo}-${type}.pdf`);
+    const safeCustomerName = (customerNameInput.value || "customer")
+      .trim()
+      .replace(/[\\/:*?"<>|]/g, "");
+
+    pdf.save(`${safeCustomerName}_${type}.pdf`);
 
     previewScale.style.transform = originalTransform;
     previewScale.style.width = originalWidth;
