@@ -23,13 +23,6 @@ const paidStamp = document.getElementById("paid-stamp");
 const invoiceElement = document.getElementById("invoice");
 const previewScale = document.querySelector(".preview-scale");
 const mobileTabButtons = document.querySelectorAll(".mobile-tab-btn");
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const mobileCloseBtn = document.getElementById("mobileCloseBtn");
-const mobileDrawer = document.getElementById("mobileDrawer");
-const mobileBackdrop = document.getElementById("mobileBackdrop");
-const mobileNavButtons = document.querySelectorAll(".mobile-nav-btn[data-mobile-view]");
-const mobileDownloadUnpaidBtn = document.getElementById("mobileDownloadUnpaidBtn");
-const mobileDownloadPaidBtn = document.getElementById("mobileDownloadPaidBtn");
 const appShell = document.querySelector(".app-shell");
 
 document
