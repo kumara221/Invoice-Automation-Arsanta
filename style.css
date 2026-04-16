@@ -453,30 +453,63 @@ body {
   }
 }
 
-/* MOBILE NAV - hidden by default on desktop */
-.mobile-topbar,
-.mobile-drawer,
-.mobile-backdrop {
+.mobile-switchbar {
   display: none;
 }
 
-/* MOBILE ONLY */
 @media (max-width: 900px) {
-  html,
-  body {
-    overflow-x: hidden;
-  }
+    
+    .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    }
 
-  body.mobile-drawer-open {
-    overflow: hidden;
-  }
+    .form-panel {
+    padding: 18px 16px 24px;
+    }
 
-  .mobile-topbar {
+    .preview-panel {
+    padding: 16px;
+    }
+
+    .form-actions {
+    flex-direction: column;
+    }
+
+    .form-actions button {
+    width: 100%;
+    }
+
+    .item-row-top {
+    grid-template-columns: 1fr;
+    }
+
+    .remove-item-btn {
+    width: 100%;
+    }
+
+    .item-row-fields.simple,
+    .item-row-fields.adjustment {
+    grid-template-columns: 1fr;
+    }
+
+    .page {
+    justify-content: center;
+    padding: 0;
+    }
+
+    .preview-scale {
+    transform: scale(0.18);
+    transform-origin: top center;
+    width: 315px;
+    height: 420px;
+    margin: 0 auto;
+    }
+    
+  .mobile-switchbar {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    height: 60px;
-    padding: 0 16px;
+    gap: 10px;
+    padding: 12px 16px;
     background: #ffffff;
     border-bottom: 1px solid #dcdcdc;
     position: sticky;
@@ -484,97 +517,21 @@ body {
     z-index: 80;
   }
 
-  .mobile-menu-btn,
-  .mobile-close-btn {
-    border: none;
-    background: transparent;
-    font-size: 26px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .mobile-topbar-title {
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .mobile-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    z-index: 89;
-  }
-
-  .mobile-backdrop.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .mobile-drawer {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 82%;
-    max-width: 320px;
-    height: 100vh;
-    background: #ffffff;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-    transform: translateX(-100%);
-    transition: transform 0.22s ease;
-    z-index: 90;
-    padding: 18px 16px 22px;
-  }
-
-  .mobile-drawer.open {
-    transform: translateX(0);
-  }
-
-  .mobile-drawer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-  }
-
-  .mobile-drawer-title {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .mobile-drawer-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .mobile-nav-btn {
-    width: 100%;
-    min-height: 44px;
+  .mobile-switch-btn {
+    flex: 1;
+    height: 44px;
     border: 1px solid #d0d0d0;
     background: #fff;
-    color: #111;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 600;
-    padding: 12px 14px;
-    text-align: left;
     cursor: pointer;
   }
 
-  .mobile-nav-btn.active {
+  .mobile-switch-btn.active {
     background: #111;
     color: #fff;
     border-color: #111;
-  }
-
-  .mobile-nav-btn.secondary {
-    background: #f5f5f5;
   }
 
   .app-shell {
@@ -586,14 +543,6 @@ body {
   .preview-panel {
     width: 100%;
     border-right: none;
-  }
-
-  .form-panel {
-    padding: 18px 16px 24px;
-  }
-
-  .preview-panel {
-    padding: 16px;
   }
 
   .app-shell[data-mobile-view="form"] .form-panel {
@@ -610,44 +559,5 @@ body {
 
   .app-shell[data-mobile-view="preview"] .preview-panel {
     display: block;
-  }
-
-  .field-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .form-actions button {
-    width: 100%;
-  }
-
-  .item-row-top {
-    grid-template-columns: 1fr;
-  }
-
-  .remove-item-btn {
-    width: 100%;
-  }
-
-  .item-row-fields.simple,
-  .item-row-fields.adjustment {
-    grid-template-columns: 1fr;
-  }
-
-  .page {
-    justify-content: center;
-    padding: 0;
-  }
-
-  .preview-scale {
-    transform: scale(0.18);
-    transform-origin: top center;
-    width: 315px;
-    height: 420px;
-    margin: 0 auto;
   }
 }

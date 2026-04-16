@@ -23,38 +23,19 @@ const paidStamp = document.getElementById("paid-stamp");
 const invoiceElement = document.getElementById("invoice");
 const previewScale = document.querySelector(".preview-scale");
 const appShell = document.querySelector(".app-shell");
-
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const mobileCloseBtn = document.getElementById("mobileCloseBtn");
-const mobileDrawer = document.getElementById("mobileDrawer");
-const mobileBackdrop = document.getElementById("mobileBackdrop");
-const mobileNavButtons = document.querySelectorAll(".mobile-nav-btn[data-mobile-view]");
-const mobileDownloadUnpaidBtn = document.getElementById("mobileDownloadUnpaidBtn");
-const mobileDownloadPaidBtn = document.getElementById("mobileDownloadPaidBtn");
+const mobileSwitchButtons = document.querySelectorAll(".mobile-switch-btn");
 
 document
   .getElementById("downloadUnpaidBtn")
   .addEventListener("click", () => {
-    closeMobileDrawer();
     downloadPDF("unpaid");
   });
 
 document
   .getElementById("downloadPaidBtn")
   .addEventListener("click", () => {
-    closeMobileDrawer();
     downloadPDF("paid");
   });
-
-mobileDownloadUnpaidBtn?.addEventListener("click", () => {
-  closeMobileDrawer();
-  downloadPDF("unpaid");
-});
-
-mobileDownloadPaidBtn?.addEventListener("click", () => {
-  closeMobileDrawer();
-  downloadPDF("paid");
-});
 
 addItemBtn.addEventListener("click", () => addItemRow());
 paidToggle.addEventListener("change", renderAll);
@@ -69,13 +50,26 @@ paidToggle.addEventListener("change", renderAll);
 ].forEach((el) => el.addEventListener("input", renderAll));
 
 init();
-setupMobileDrawer();
+setupMobileSwitch();
 
 function init() {
   populateAdminOptions();
   setDefaultDate();
   addItemRow({ itemId: "package-60", qty: 1 });
   renderAll();
+}
+
+function setupMobileSwitch() {
+  mobileSwitchButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const view = btn.dataset.mobileView;
+
+      appShell?.setAttribute("data-mobile-view", view);
+
+      mobileSwitchButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
 }
 
 function populateAdminOptions() {
@@ -135,37 +129,6 @@ function addItemRow(defaults = {}) {
   buildItemFields(row, itemSelect.value, defaults);
   attachRowListeners(row);
   renderAll();
-}
-
-function setupMobileDrawer() {
-  mobileMenuBtn?.addEventListener("click", openMobileDrawer);
-  mobileCloseBtn?.addEventListener("click", closeMobileDrawer);
-  mobileBackdrop?.addEventListener("click", closeMobileDrawer);
-
-  mobileNavButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const view = btn.dataset.mobileView;
-
-      appShell?.setAttribute("data-mobile-view", view);
-
-      mobileNavButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      closeMobileDrawer();
-    });
-  });
-}
-
-function openMobileDrawer() {
-  mobileDrawer?.classList.add("open");
-  mobileBackdrop?.classList.add("show");
-  document.body.classList.add("mobile-drawer-open");
-}
-
-function closeMobileDrawer() {
-  mobileDrawer?.classList.remove("open");
-  mobileBackdrop?.classList.remove("show");
-  document.body.classList.remove("mobile-drawer-open");
 }
 
 function buildItemFields(row, itemId, defaults = {}) {
