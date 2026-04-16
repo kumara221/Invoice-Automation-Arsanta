@@ -23,15 +23,28 @@ const paidStamp = document.getElementById("paid-stamp");
 const invoiceElement = document.getElementById("invoice");
 const previewScale = document.querySelector(".preview-scale");
 const mobileTabButtons = document.querySelectorAll(".mobile-tab-btn");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileCloseBtn = document.getElementById("mobileCloseBtn");
+const mobileDrawer = document.getElementById("mobileDrawer");
+const mobileBackdrop = document.getElementById("mobileBackdrop");
+const mobileNavButtons = document.querySelectorAll(".mobile-nav-btn[data-mobile-view]");
+const mobileDownloadUnpaidBtn = document.getElementById("mobileDownloadUnpaidBtn");
+const mobileDownloadPaidBtn = document.getElementById("mobileDownloadPaidBtn");
 const appShell = document.querySelector(".app-shell");
 
 document
   .getElementById("downloadUnpaidBtn")
-  .addEventListener("click", () => downloadPDF("unpaid"));
+  .addEventListener("click", () => {
+    closeMobileDrawer();
+    downloadPDF("unpaid");
+  });
 
 document
   .getElementById("downloadPaidBtn")
-  .addEventListener("click", () => downloadPDF("paid"));
+  .addEventListener("click", () => {
+    closeMobileDrawer();
+    downloadPDF("paid");
+  });
 
 addItemBtn.addEventListener("click", () => addItemRow());
 paidToggle.addEventListener("change", renderAll);
@@ -46,18 +59,35 @@ paidToggle.addEventListener("change", renderAll);
 ].forEach((el) => el.addEventListener("input", renderAll));
 
 init();
-setupMobileView();
-function setupMobileView() {
-  mobileTabButtons.forEach((btn) => {
+function setupMobileDrawer() {
+  mobileMenuBtn?.addEventListener("click", openMobileDrawer);
+  mobileCloseBtn?.addEventListener("click", closeMobileDrawer);
+  mobileBackdrop?.addEventListener("click", closeMobileDrawer);
+
+  mobileNavButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const view = btn.dataset.mobileView;
 
       appShell.setAttribute("data-mobile-view", view);
 
-      mobileTabButtons.forEach((b) => b.classList.remove("active"));
+      mobileNavButtons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+
+      closeMobileDrawer();
     });
   });
+}
+
+function openMobileDrawer() {
+  mobileDrawer?.classList.add("open");
+  mobileBackdrop?.classList.add("show");
+  document.body.classList.add("mobile-drawer-open");
+}
+
+function closeMobileDrawer() {
+  mobileDrawer?.classList.remove("open");
+  mobileBackdrop?.classList.remove("show");
+  document.body.classList.remove("mobile-drawer-open");
 }
 
 function init() {
