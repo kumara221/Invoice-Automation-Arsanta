@@ -51,7 +51,7 @@ const APP_CONFIG = {
     { id: "extra-video-reels", label: "Extra Video Reels (1 Menit)", type: "normal", defaultPrice: 200000 },
     { id: "extra-video-reels", label: "Extra Video Cinematik (2-3 Menit)", type: "normal", defaultPrice: 300000 },
     { id: "promo", label: "Promo", type: "adjustment" },
-    { id: "dp", label: "DP", type: "fixed_adjustment", fixedAmount: 100000 }
+    { id: "dp", label: "DP", type: "adjustment" }
   ]
   
 };
