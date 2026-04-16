@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arsanta Invoice Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="form-panel">
+      <h2>Invoice Form</h2>
+
+      <div class="field-group">
+        <label for="adminSelect">Admin</label>
+        <select id="adminSelect"></select>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="invoiceDate">Date</label>
+          <input type="date" id="invoiceDate" />
+        </div>
+
+        <div class="field-group">
+          <label for="customerOrder">Pelanggan ke-</label>
+          <input type="number" id="customerOrder" min="1" placeholder="100 aamiin" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Invoice No</label>
+        <input type="text" id="invoiceNoPreview" readonly />
+      </div>
+
+      <h3>Customer</h3>
+
+      <div class="field-group">
+        <label for="customerName">Nama Customer</label>
+        <input type="text" id="customerName" placeholder="Si Sulung" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerPhone">No HP Customer</label>
+        <input type="text" id="customerPhone" placeholder="085172371232" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerUniversity">Asal Universitas</label>
+        <input type="text" id="customerUniversity" placeholder="Universitas Brawijaya" />
+      </div>
+
+      <h3>Items</h3>
+
+      <div id="itemsContainer" class="items-builder"></div>
+
+      <div class="form-actions">
+        <button type="button" id="addItemBtn">Tambah Item</button>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-row">
+        <input type="checkbox" id="paidToggle" checked />
+        <span>Tampilkan stamp PAID</span>
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="downloadUnpaidBtn">Download Unpaid</button>
+        <button type="button" id="downloadPaidBtn">Download Paid</button>
+      </div>
+    </aside>
+
+    <main class="preview-panel">
+      <div class="page">
+        <div class="preview-scale">
+          <div class="invoice-card" id="invoice">
+            <div class="watermark">
+              <img src="assets/logo.png" alt="Watermark Logo" />
+            </div>
+
+            <header class="top-section">
+              <div class="brand">
+                <img src="assets/logo.png" alt="Arsanta Logo" class="logo" />
+              </div>
+            </header>
+
+            <section class="intro-section">
+              <div class="intro-left">
+                <h1>Invoice</h1>
+                <p>Invoice No. <span id="invoice-no">AC-042611</span></p>
+                <p>Date: <span id="invoice-date-text">May 09, 2026</span></p>
+              </div>
+
+              <div class="intro-right">
+                <p class="label">Billed to:</p>
+                <p id="customer-name-text">Siti Auliannisa</p>
+                <p id="customer-phone-text">+62895391096566</p>
+                <p id="customer-university-text">ISI Surakarta</p>
+              </div>
+            </section>
+
+            <section class="items-section">
+              <table class="invoice-table">
+                <thead>
+                  <tr>
+                    <th class="col-item">Items</th>
+                    <th class="col-qty">Qty</th>
+                    <th class="col-price">Price</th>
+                    <th class="col-amount">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="invoice-items-body"></tbody>
+              </table>
+            </section>
+
+            <section class="bottom-section">
+            <div class="payment-info">
+                <h2>Payment Info</h2>
+                <div id="payment-info-lines"></div>
+            </div>
+
+            <div class="total-label">Total Payment</div>
+            <div class="total-value" id="total-payment">325.000</div>
+
+            <div class="paid-wrap">
+                <div class="stamp paid" id="paid-stamp">PAID</div>
+            </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
