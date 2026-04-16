@@ -22,6 +22,8 @@ const totalPaymentText = document.getElementById("total-payment");
 const paidStamp = document.getElementById("paid-stamp");
 const invoiceElement = document.getElementById("invoice");
 const previewScale = document.querySelector(".preview-scale");
+const mobileTabButtons = document.querySelectorAll(".mobile-tab-btn");
+const appShell = document.querySelector(".app-shell");
 
 document
   .getElementById("downloadUnpaidBtn")
@@ -44,6 +46,19 @@ paidToggle.addEventListener("change", renderAll);
 ].forEach((el) => el.addEventListener("input", renderAll));
 
 init();
+setupMobileView();
+function setupMobileView() {
+  mobileTabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const view = btn.dataset.mobileView;
+
+      appShell.setAttribute("data-mobile-view", view);
+
+      mobileTabButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+}
 
 function init() {
   populateAdminOptions();

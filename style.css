@@ -467,3 +467,124 @@ body {
     margin: 0;
   }
 }
+
+/* MOBILE SWITCH - default hidden di desktop */
+.mobile-view-switch {
+  display: none;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 900px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .mobile-view-switch {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #dcdcdc;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .mobile-tab-btn {
+    flex: 1;
+    height: 42px;
+    border: 1px solid #d0d0d0;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .mobile-tab-btn.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+
+  .app-shell {
+    display: block;
+    min-height: auto;
+  }
+
+  .form-panel,
+  .preview-panel {
+    width: 100%;
+    border-right: none;
+  }
+
+  .form-panel {
+    padding: 18px 16px 24px;
+  }
+
+  .preview-panel {
+    padding: 16px;
+  }
+
+  /* default mobile: tampil form dulu */
+  .app-shell[data-mobile-view="form"] .form-panel {
+    display: block;
+  }
+
+  .app-shell[data-mobile-view="form"] .preview-panel {
+    display: none;
+  }
+
+  .app-shell[data-mobile-view="preview"] .form-panel {
+    display: none;
+  }
+
+  .app-shell[data-mobile-view="preview"] .preview-panel {
+    display: block;
+  }
+
+  /* field mobile */
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .item-row-top {
+    grid-template-columns: 1fr;
+  }
+
+  .remove-item-btn {
+    width: 100%;
+  }
+
+  .item-row-fields.simple {
+    grid-template-columns: 1fr;
+  }
+
+  .item-row-fields.adjustment {
+    grid-template-columns: 1fr;
+  }
+
+  /* preview mobile */
+  .page {
+    justify-content: center;
+    padding: 0;
+  }
+
+    .preview-scale {
+    transform: scale(0.18);
+    transform-origin: top center;
+    width: 315px;
+    height: 400px;
+    margin: 0 auto;
+    }
+}
