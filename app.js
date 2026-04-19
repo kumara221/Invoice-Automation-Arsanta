@@ -410,8 +410,12 @@ async function downloadPDF(type) {
     const safeCustomerName = (customerNameInput.value || "customer")
       .trim()
       .replace(/[\\/:*?"<>|]/g, "");
+    
+    const safeInvoiceNo = (invoiceNoText.textContent || getInvoiceNumber() || "invoice-no")
+    .trim()
+    .replace(/[\\/:*?"<>|]/g, "");
 
-    pdf.save(`${safeCustomerName}_${type}.pdf`);
+    pdf.save(`${safeInvoiceNo}_${safeCustomerName}_${type}.pdf`);
 
     previewScale.style.transform = originalTransform;
     previewScale.style.width = originalWidth;
