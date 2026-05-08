@@ -6,8 +6,8 @@ const APP_CONFIG = {
         type: "text",
         lines: [
           "Arsanta Creative",
-          "Bank: BNI (a.n. Haidar Fikri Surya Putra)",
-          "No. Rek: 0253827099"
+          "Bank: BNI (a.n. Reza Syaifullah Narendra)",
+          "No. Rek: 708857581600"
         ]
       }
     },
@@ -19,7 +19,7 @@ const APP_CONFIG = {
         lines: [
           "Arsanta Creative",
           "Bank: CIMB (a.n. Reza Syaifullah Narendra)",
-          "No. Rek: 763437949200"
+          "No. Rek: 708857581600"
         ]
       }
     },
@@ -28,12 +28,12 @@ const APP_CONFIG = {
       name: "Abiyyu",
       paymentInfo: {
         type: "qris_with_text",
-        qrisImage: "assets/qris-abiyyu.png",
-        qrisLabel: "QRIS",
+        // qrisImage: "assets/qris-abiyyu.png",
+        // qrisLabel: "QRIS",
         lines: [
           "Arsanta Creative",
-          "Bank: Mandiri (a.n. Abiyyu Kumara Nayottama)",
-          "No. Rek: 1460016901428"
+          "Bank: Mandiri (a.n. Reza Syaifullah Narendra)",
+          "No. Rek: 708857581600"
         ]
       }
     }
@@ -55,5 +55,4 @@ const APP_CONFIG = {
     { id: "promo", label: "Promo", type: "adjustment" },
     { id: "dp", label: "DP", type: "adjustment" }
   ]
-  
 };

@@ -291,41 +291,41 @@ function renderPaymentInfo() {
 
   paymentInfoLines.innerHTML = "";
 
-  if (paymentInfo.type === "qris_with_text") {
-    const wrapper = document.createElement("div");
-    wrapper.className = "payment-info-qris-layout";
+  // if (paymentInfo.type === "qris_with_text") {
+  //   const wrapper = document.createElement("div");
+  //   wrapper.className = "payment-info-qris-layout";
 
-    const qrisBlock = document.createElement("div");
-    qrisBlock.className = "qris-block";
+  //   const qrisBlock = document.createElement("div");
+  //   qrisBlock.className = "qris-block";
 
-    const qrisImg = document.createElement("img");
-    qrisImg.src = paymentInfo.qrisImage;
-    qrisImg.alt = paymentInfo.qrisLabel || "QRIS";
-    qrisImg.className = "qris-image";
-    qrisImg.setAttribute("crossorigin", "anonymous");
+  //   const qrisImg = document.createElement("img");
+  //   qrisImg.src = paymentInfo.qrisImage;
+  //   qrisImg.alt = paymentInfo.qrisLabel || "QRIS";
+  //   qrisImg.className = "qris-image";
+  //   qrisImg.setAttribute("crossorigin", "anonymous");
 
-    const qrisLabel = document.createElement("div");
-    qrisLabel.className = "qris-label";
-    qrisLabel.textContent = paymentInfo.qrisLabel || "QRIS";
+  //   const qrisLabel = document.createElement("div");
+  //   qrisLabel.className = "qris-label";
+  //   qrisLabel.textContent = paymentInfo.qrisLabel || "QRIS";
 
-    qrisBlock.appendChild(qrisImg);
-    qrisBlock.appendChild(qrisLabel);
+  //   qrisBlock.appendChild(qrisImg);
+  //   qrisBlock.appendChild(qrisLabel);
 
-    const textBlock = document.createElement("div");
-    textBlock.className = "payment-text-block";
+  //   const textBlock = document.createElement("div");
+  //   textBlock.className = "payment-text-block";
 
-    paymentInfo.lines.forEach((line) => {
-      const p = document.createElement("p");
-      p.textContent = line;
-      textBlock.appendChild(p);
-    });
+  //   paymentInfo.lines.forEach((line) => {
+  //     const p = document.createElement("p");
+  //     p.textContent = line;
+  //     textBlock.appendChild(p);
+  //   });
 
-    wrapper.appendChild(qrisBlock);
-    wrapper.appendChild(textBlock);
+  //   wrapper.appendChild(qrisBlock);
+  //   wrapper.appendChild(textBlock);
 
-    paymentInfoLines.appendChild(wrapper);
-    return;
-  }
+  //   paymentInfoLines.appendChild(wrapper);
+  //   return;
+  // }
 
   paymentInfo.lines.forEach((line) => {
     const p = document.createElement("p");
@@ -412,8 +412,8 @@ async function downloadPDF(type) {
       .replace(/[\\/:*?"<>|]/g, "");
     
     const safeInvoiceNo = (invoiceNoText.textContent || getInvoiceNumber() || "invoice-no")
-    .trim()
-    .replace(/[\\/:*?"<>|]/g, "");
+      .trim()
+      .replace(/[\\/:*?"<>|]/g, "");
 
     pdf.save(`${safeInvoiceNo}_${safeCustomerName}_${type}.pdf`);
 
